@@ -9,7 +9,12 @@ export const createRoutes = (store) => ({
   path        : '/',
   component   : CoreLayout,
   indexRoute  : Home,
-  childRoutes : []
+  childRoutes : [
+    {
+      path: '/:sort',
+      indexRoute: Home,
+    }
+  ]
 })
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically

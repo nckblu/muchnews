@@ -7,8 +7,8 @@ export default class ApiService {
 		this.apiKey = "&apiKey=" + config.apiKey;
 	}
 
-	fetchPopular() {
-		return axios.get(config.apiUrl + '?source=the-next-web&sortBy=latest' + this.apiKey);
+	fetchPopular(sort = "latest") {
+		return axios.get(config.apiUrl + '?source=the-next-web&sortBy=' + sort + this.apiKey);
 	}
 
 }

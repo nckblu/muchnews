@@ -3,9 +3,9 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 
 export const Header = () => (
-  <div>
+  <header className="Header">
     <h1>News</h1>
-  </div>
+  </header>
 )
 
 export default Header

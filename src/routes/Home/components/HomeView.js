@@ -1,4 +1,5 @@
 import React from 'react'
+import Articles from '../../../components/Articles'
 import { connect } from "react-redux";
 import { Map } from "immutable";
 import { 
@@ -12,7 +13,7 @@ export class HomeView extends React.Component {
   }
 
   componentDidMount() {
-  	this.props.fetchPopular();	
+  	this.props.fetchPopular(this.props.params.sort);	
   }
 
   componentDidUpdate() {
@@ -23,13 +24,7 @@ export class HomeView extends React.Component {
   	let { articles } = this.props;
   	console.log('articles', articles)
   	return (
-  		<div>
-	  		{articles.map((article, i) => {
-	  			return (
-	  				<li key={i}>{article.title}</li>
-	  			)
-	  		})}
-  		</div>
+  		<Articles articles={articles}></Articles>
   	);
   }
 }

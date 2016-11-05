@@ -17,11 +17,11 @@ export function fetchPopularRequest (state) {
   }
 }
 
-export function fetchPopular() {
+export function fetchPopular(sort) {
   return (dispatch, getState) => {
     dispatch(fetchPopularRequest());
     const apiService = new ApiService();
-    apiService.fetchPopular()
+    apiService.fetchPopular(sort)
     .then(response => {
     	return dispatch(fetchPopularSuccess(response.data.articles));
     })
