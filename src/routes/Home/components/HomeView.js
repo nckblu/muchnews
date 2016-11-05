@@ -12,7 +12,6 @@ export class HomeView extends React.Component {
   }
 
   componentDidMount() {
-  	console.log('did mount')
   	this.props.fetchPopular();	
   }
 
@@ -25,7 +24,6 @@ export class HomeView extends React.Component {
   	console.log('articles', articles)
   	return (
   		<div>
-  		Articles here
 	  		{articles.map((article, i) => {
 	  			return (
 	  				<li key={i}>{article.title}</li>
@@ -37,7 +35,6 @@ export class HomeView extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log('state', state.articles.toJS())
   return {
    	articles: state.articles.get("items"),
   };
