@@ -3,11 +3,13 @@ import Articles from '../../../components/Articles';
 import ArticleSources from '../../../components/ArticleSources';
 import { connect } from "react-redux";
 import { Map } from "immutable";
+import _ from "underscore";
 import { 
   fetchPopular,
 } from "actions/articles";
 import { 
   fetchArticleSources,
+  setActiveSource,
 } from "actions/articleSources";
 
 export class HomeView extends React.Component {
@@ -15,15 +17,29 @@ export class HomeView extends React.Component {
   static defaultProps = {
   	articles: [],
     articleSources: [],
+    activeSource: null,
   }
 
   componentDidMount() {
     this.props.fetchArticleSources();  
-  	this.props.fetchPopular(this.props.params.sort);	
+  	// this.props.fetchPopular(this.props.params.sourceId);	
+        console.log('article source size', !this.props.articleSources)
+
   }
 
   componentDidUpdate() {
   	console.log('did update', this.props.articles);
+        console.log('article source size', !this.props.articleSources)
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if ( (!this.props.articleSources.length && nextProps.articleSources) 
+          || nextProps.params.sourceId != this.props.params.sourceId ) {
+      let activeSource = _.findWhere(nextProps.articleSources, {id: nextProps.params.sourceId ? nextProps.params.sourceId : nextProps.articleSources[0].id})
+      this.props.setActiveSource(activeSource);
+      this.props.fetchPopular(activeSource.id, activeSource.sortBysAvailable[0])
+    }
   }
 
   render() {
@@ -42,14 +58,16 @@ export class HomeView extends React.Component {
 const mapStateToProps = state => {
   return {
    	articles: state.articles.get("items"),
-    articleSources: state.articleSources.get("sources"),
+    articleSources: state.articleSources.get("sources", []),
+    activeSource: state.articleSources.get("active"),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPopular: () => dispatch(fetchPopular()),
+    fetchPopular: (sourceId, sort) => dispatch(fetchPopular(sourceId, sort)),
     fetchArticleSources: () => dispatch(fetchArticleSources()),
+    setActiveSource: (source) => dispatch(setActiveSource(source)),
   };
 };
 

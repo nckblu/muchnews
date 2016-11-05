@@ -11,7 +11,7 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     {
-      path: '/:sort',
+      path: '/:sourceId',
       indexRoute: Home,
     }
   ]

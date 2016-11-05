@@ -7,6 +7,7 @@ export const FETCH_ARTICLESOURCES_REQUEST = 'FETCH_ARTICLESOURCES_REQUEST';
 export const FETCH_ARTICLESOURCES = 'FETCH_ARTICLESOURCES';
 export const FETCH_ARTICLESOURCES_SUCCESS = 'FETCH_ARTICLESOURCES_SUCCESS';
 export const FETCH_ARTICLESOURCES_ERROR = 'FETCH_ARTICLESOURCES_ERROR';
+export const SET_ACTIVE_SOURCE = 'SET_ACTIVE_SOURCE';
 
 // ------------------------------------
 // Actions
@@ -43,4 +44,11 @@ export function fetchArticleSourcesError (data) {
 	return {
 		type: FETCH_ARTICLESOURCES_ERROR,
 	}
+}
+
+export function setActiveSource (source) {
+  return {
+    type: SET_ACTIVE_SOURCE,
+    source,
+  }
 }
