@@ -1,4 +1,8 @@
 import React from 'react'
+import { connect } from "react-redux";
+import { 
+  fetchPopular,
+} from "actions/articles";
 
 export const HomeView = () => (
   <div>
@@ -8,4 +12,16 @@ export const HomeView = () => (
   </div>
 )
 
-export default HomeView
+const mapStateToProps = state => {
+  return {
+   
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    	
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
