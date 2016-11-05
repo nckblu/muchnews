@@ -24,7 +24,10 @@ export class HomeView extends React.Component {
   	let { articles } = this.props;
   	console.log('articles', articles)
   	return (
-  		<Articles articles={articles}></Articles>
+      <div>
+        <ArticleSources></ArticleSources>
+    		<Articles articles={articles}></Articles>
+      </div>
   	);
   }
 }

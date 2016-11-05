@@ -1,0 +1,64 @@
+@import "../../styles/variables";
+
+.Article {
+	width: 33.3333333%;
+	display: flex;
+	line-height: 1.2;
+
+	&__inner {
+		margin: 20px;
+		width: 100%;
+		background-color: $white;
+		position: relative;
+
+		&__image {
+			padding-top: 56%;
+			background-size: cover;
+			width: 100%;
+			background-position: center;
+		}
+
+		&__body {
+			color: $midGrey;
+			padding: 20px;
+
+			&__heading {
+				font-size: 15px;
+			}
+
+			&__content {
+				font-size: 12px;
+				margin-top: 10px;
+				padding-bottom: 40px
+			}
+
+			&__footer {
+				bottom: 20px;
+				left: 0;
+				position: absolute;
+				display: block;
+				width: 100%;
+				padding: 0 20px;
+
+				&:after {
+					visibility: hidden;
+					display: block;
+					font-size: 0;
+					content: " ";
+					clear: both;
+					height: 0;
+				}
+
+				&__time {
+					float: left;
+				}
+
+				&__logo {
+					float: right;
+				}
+			}
+		}
+
+	}
+}
+
