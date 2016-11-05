@@ -1,5 +1,4 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import Article from '../Article';
 import './Articles.scss';
 

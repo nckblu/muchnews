@@ -1,0 +1,43 @@
+@import "../../styles/variables";
+
+.ArticleSources {
+	margin-top: 40px;
+	overflow: scroll;
+	height: 50px;
+	
+	&__inner {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: nowrap;
+
+		&__item {
+			font-size: 20px;
+			text-transform: uppercase;
+			position: relative;
+			margin-right: 20px;
+			font-weight: $bold;
+			padding-bottom: 10px;
+			list-style: none;
+			cursor: pointer;
+			white-space: nowrap;
+			
+			&:before {
+				transition: all 0.5s ease-in-out;
+				content: "";
+				position: absolute;
+				background: $black;
+				bottom: -5px;
+				width: 0;
+				height: 6px;
+			}
+
+			&:hover, &--active {
+				&:before {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+

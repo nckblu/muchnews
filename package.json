@@ -1,6 +1,5 @@
 {
   "name": "news-nckblu",
-  "version": "0.1",
   "description": "News reader built with React/Redux/Webpack",
   "main": "index.js",
   "engines": {
