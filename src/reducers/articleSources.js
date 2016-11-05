@@ -21,7 +21,6 @@ export default function articleSourcesReducer (state = initialState, action) {
   			return state.set("sources", action.payload);
 
       case SET_ACTIVE_SOURCE:
-        console.log('setting active source', action.source)
         return state.set("active", action.source);
 
   		default:

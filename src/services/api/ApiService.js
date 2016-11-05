@@ -8,7 +8,6 @@ export default class ApiService {
 	}
 
 	fetchPopular(source = "the-next-web", sort = "latest") {
-		console.log('fetching pop')
 		return axios.get(config.apiUrl + 'articles?source=' + source + '&sortBy=' + sort + this.apiKey);
 	}
 
