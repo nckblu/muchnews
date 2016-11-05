@@ -22,17 +22,8 @@ export class HomeView extends React.Component {
 
   componentDidMount() {
     this.props.fetchArticleSources();  
-  	// this.props.fetchPopular(this.props.params.sourceId);	
-        console.log('article source size', !this.props.articleSources)
-
   }
-
-  componentDidUpdate() {
-  	console.log('did update', this.props.articles);
-        console.log('article source size', !this.props.articleSources)
-
-  }
-
+  
   componentWillReceiveProps(nextProps) {
     if ( (!this.props.articleSources.length && nextProps.articleSources) 
           || nextProps.params.sourceId != this.props.params.sourceId ) {
@@ -44,8 +35,6 @@ export class HomeView extends React.Component {
 
   render() {
   	let { articles, articleSources } = this.props;
-  	console.log('articles', articles);
-    console.log('article sources', articleSources);
   	return (
       <div>
         <ArticleSources sources={articleSources}></ArticleSources>
