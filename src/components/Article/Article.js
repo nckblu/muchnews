@@ -4,7 +4,7 @@ import '../../styles/core.scss';
 import './Article.scss';
 
 export const Article = ({ article }) => (
-  <div className="Article">
+  <a href={article.url} className="Article" target="_blank">
   	<div className="Article__inner">
   		<div className="Article__inner__image" style={{backgroundImage: `url('${article.urlToImage}')`}}>
   		</div>
@@ -25,7 +25,7 @@ export const Article = ({ article }) => (
   			</footer>
   		</article>
   	</div>
-  </div>
+  </a>
 ); 
 
 export default Article;
