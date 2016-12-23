@@ -4,7 +4,7 @@ import './Header.scss'
 
 export const Header = () => (
   <header className="Header">
-    <h1>News</h1>
+    <h1>MuchNews</h1>
   </header>
 )
 

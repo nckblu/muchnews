@@ -7,7 +7,7 @@ export const ArticleSources = ({ sources }) => (
 	<ul className="ArticleSources__inner">
 		{sources.map(source => (
 			<li className="ArticleSources__inner__item" key={source.id}>
-				<Link className="ArticleSources__inner__item__link" to={`/${source.id}`}>{source.name}</Link>
+				<Link className="ArticleSources__inner__item__link" to={`/news/${source.id}`}>{source.name}</Link>
 			</li>
 		))}
 	</ul>

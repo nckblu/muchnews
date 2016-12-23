@@ -1,16 +1,25 @@
 @import "../../styles/variables";
 
 .Article {
-	width: 33.3333333%;
+	width: 100%;
 	display: flex;
 	line-height: 1.2;
 	text-decoration: none;
+	@include breakpoint($sm) {
+		width: 50%;
+	}
+	@include breakpoint($md) {
+		width: 33.3333333%;
+	}
 
 	&__inner {
-		margin: 20px;
+		margin: 20px 20px 0 20px;
 		width: 100%;
 		background-color: $white;
 		position: relative;
+		@include breakpoint($sm) {
+			margin: 20px;
+		}
 
 		&__image {
 			padding-top: 56%;
