@@ -3,15 +3,25 @@ import Header from '../../components/Header';
 import { connect } from "react-redux";
 import './CoreLayout.scss';
 import '../../styles/core.scss';
+import {
+	goToNews,
+} from 'actions/routes';
 
 export class CoreLayout extends React.Component {
 
 	componentDidMount() {
 		if (!this.props.user.token && this.props.location.pathname.split("/")[1] !== "login") {
-			this.props.router.push("/login");
-		} else if(this.props.user.token && this.props.location.pathname.split("/")[1] === "login") {
-			console.log('in login')
-			this.props.router.push("/news");
+			this.props.routes.push("/login");
+		} else if (this.props.user.token && this.props.location.pathname.split("/")[1] === "login") {
+			this.props.goToNews();
+		}
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+		if (!nextProps.user.token && nextProps.location.pathname.split("/")[1] !== "login") {
+			nextProps.routes.push("/login");
+		} else if (nextProps.user.token && nextProps.location.pathname.split("/")[1] === "login") {
+			this.props.goToNews();
 		}
 	}
 
@@ -32,13 +42,13 @@ export class CoreLayout extends React.Component {
 
 const mapStateToProps = state => {
   return {
-  	user: state.user,
+  	user: state.user.toJS(),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    
+    goToNews: () => dispatch(goToNews()),
   };
 };
 

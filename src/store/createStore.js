@@ -5,12 +5,13 @@ import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import immutableTransform from 'redux-persist-transform-immutable'
+import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 
 export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk]
+  const middleware = [thunk, routerMiddleware(browserHistory)]
 
   // ======================================================
   // Store Enhancers
@@ -42,6 +43,8 @@ export default (initialState = {}) => {
   });
 
   store.asyncReducers = {}
+
+  const history = syncHistoryWithStore(browserHistory, store)
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))

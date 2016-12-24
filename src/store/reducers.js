@@ -3,6 +3,7 @@ import locationReducer from './location';
 import articlesReducer from 'reducers/articles';
 import articleSourcesReducer from 'reducers/articleSources';
 import userReducer from 'reducers/user';
+import { routerReducer } from 'react-router-redux'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -10,6 +11,7 @@ export const makeRootReducer = (asyncReducers) => {
     articles: articlesReducer,
     articleSources: articleSourcesReducer,
     user: userReducer,
+    routing: routerReducer,
     ...asyncReducers,
   });
 }
