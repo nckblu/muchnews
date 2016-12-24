@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
         "tymon/jwt-auth": "^0.5.9",
-        "barryvdh/laravel-cors": "^0.8.2"
+        "barryvdh/laravel-cors": "^0.8.2",
+        "google/apiclient": "dev-v1-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
