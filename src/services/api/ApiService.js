@@ -7,6 +7,14 @@ export default class ApiService {
 		this.apiKey = "&apiKey=" + config.apiKey;
 	}
 
+	user() {
+		return {
+			authenticate() {
+				console.log("authenticating");
+			}
+		}
+	}
+
 	fetchPopular(source = "the-next-web", sort = "latest") {
 		return axios.get(config.apiUrl + 'articles?source=' + source + '&sortBy=' + sort + this.apiKey);
 	}
