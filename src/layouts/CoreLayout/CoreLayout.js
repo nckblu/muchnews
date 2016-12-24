@@ -7,9 +7,12 @@ import '../../styles/core.scss';
 export class CoreLayout extends React.Component {
 
 	componentDidMount() {
-		if (this.props.location.pathname.split("/")[1] === "login") {
+		if (!this.props.user.token && this.props.location.pathname.split("/")[1] !== "login") {
+			this.props.router.push("/login");
+		} else if(this.props.user.token && this.props.location.pathname.split("/")[1] === "login") {
 			console.log('in login')
-		}	
+			this.props.router.push("/news");
+		}
 	}
 
 	render() {
@@ -29,7 +32,7 @@ export class CoreLayout extends React.Component {
 
 const mapStateToProps = state => {
   return {
-
+  	user: state.user,
   };
 };
 

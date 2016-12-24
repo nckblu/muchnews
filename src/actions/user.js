@@ -26,6 +26,7 @@ export function userAuthenticate(accessToken) {
     	return dispatch(userAuthenticateSuccess(response.data.token));
     })
     .catch(e => {
+      console.log('fail', e)
     	return dispatch(userAuthenticateFail());
     });
   }
