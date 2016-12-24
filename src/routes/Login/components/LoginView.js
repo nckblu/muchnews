@@ -10,7 +10,12 @@ export class LoginView extends React.Component {
 
 	responseGoogle(response) {
 	  console.log(response);
-	  this.props.userAuthenticate();	
+	  console.log('dispatch now')
+	  this.props.userAuthenticate(response.accessToken);	
+	}
+
+	responseGoogleFail() {
+		console.error("goog failed")
 	}
 
 	render() {
@@ -19,7 +24,7 @@ export class LoginView extends React.Component {
 			    clientId={Config.googleClientId}
 			    buttonText="Login"
 			    onSuccess={::this.responseGoogle}
-			    onFailure={::this.responseGoogle}
+			    onFailure={::this.responseGoogleFail}
 			  />
 		)
 		
@@ -34,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-  	userAuthenticate: () => dispatch(userAuthenticate()),
+  	userAuthenticate: (accessToken) => dispatch(userAuthenticate(accessToken)),
   };
 };
 

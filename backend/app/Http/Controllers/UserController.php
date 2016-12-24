@@ -11,7 +11,7 @@ use App\User;
 class UserController extends Controller
 {
 	public function authenticate(Request $request) {
-		$accessToken = $request->input("token");
+		$accessToken = $request->input("accessToken");
 		$user = Socialite::driver('google')->userFromToken($accessToken);
 
 		if (!User::where('email', $user->getEmail())->first()) {
@@ -21,7 +21,6 @@ class UserController extends Controller
 			$newUser->name = $userName;
 			$newUser->email = $userEmail;
 			$newUser->save();
-
 			$token = JWTAuth::fromUser($newUser);
 			return response()->json([
 				'token' => $token,

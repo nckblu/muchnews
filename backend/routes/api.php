@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 //     $user = User::create("test");
 // });
 
+Route::group(['middleware' => 'cors'], function(){
+	Route::post('login', ['uses' => 'UserController@authenticate']);
+});
 
-
-Route::post('login', ['uses' => 'UserController@authenticate']);

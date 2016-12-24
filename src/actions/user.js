@@ -6,7 +6,7 @@ import ApiService from "services/api/ApiService";
 export const USER_AUTHENTICATE = 'USER_AUTHENTICATE';
 export const USER_AUTHENTICATE_REQUEST = 'USER_AUTHENTICATE_REQUEST';
 export const USER_AUTHENTICATE_SUCCESS = 'USER_AUTHENTICATE_SUCCESS';
-export const USER_AUTHENTICATE_ERROR = 'USER_AUTHENTICATE_ERROR';
+export const USER_AUTHENTICATE_FAIL = 'USER_AUTHENTICATE_FAIL';
 
 // ------------------------------------
 // Actions
@@ -17,17 +17,17 @@ export function userAuthenticateRequest (state) {
   }
 }
 
-export function userAuthenticate(sourceId, sort) {
+export function userAuthenticate(accessToken) {
   return (dispatch, getState) => {
     dispatch(userAuthenticateRequest());
     const apiService = new ApiService();
-    apiService.user().authenticate();
-    // .then(response => {
-    // 	return dispatch(fetchPopularSuccess(response.data.articles));
-    // })
-    // .catch(e => {
-    // 	return dispatch(fetchError());
-    // });
+    apiService.user().authenticate(accessToken)
+    .then(response => {
+    	return dispatch(userAuthenticateSuccess(response.data.token));
+    })
+    .catch(e => {
+    	return dispatch(userAuthenticateFail());
+    });
   }
 }
 
@@ -38,8 +38,8 @@ export function userAuthenticateSuccess (payload) {
   }
 }
 
-export function fetchError (data) {
+export function userAuthenticateFail (data) {
 	return {
-		type: FETCH_ERROR,
+		type: USER_AUTHENTICATE_FAIL,
 	}
 }

@@ -9,8 +9,11 @@ export default class ApiService {
 
 	user() {
 		return {
-			authenticate() {
-				console.log("authenticating");
+			authenticate(accessToken) {
+				console.log('instantit')
+				return axios.post(config.userApiUrl + 'login', {
+					accessToken,
+				});
 			}
 		}
 	}
