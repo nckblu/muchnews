@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Socialite;
+use JWTAuth;
 use App\User;
 
 class UserController extends Controller
 {
-	public function index(Request $request) {
+	public function authenticate(Request $request) {
 		$accessToken = $request->input("token");
 		$user = Socialite::driver('google')->userFromToken($accessToken);
 
@@ -20,14 +21,17 @@ class UserController extends Controller
 			$newUser->name = $userName;
 			$newUser->email = $userEmail;
 			$newUser->save();
+
+			$token = JWTAuth::fromUser($newUser);
 			return response()->json([
-			    'user created' => $newUser->email,
+				'token' => $token,
+				'newUser' => true,
+			]);
+		} else {
+			$token = JWTAuth::fromUser($user);
+			return response()->json([
+				'token' => $token,
 			]);
 		}
-		
-
-		return response()->json([
-		    'email' => $user->getName(),
-		]);
 	}
 }

@@ -22,4 +22,4 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::post('login', ['uses' => 'UserController@index']);
+Route::post('login', ['uses' => 'UserController@authenticate']);
