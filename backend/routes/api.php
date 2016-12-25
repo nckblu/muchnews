@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,6 @@ use App\Http\Controllers\UserController;
 
 Route::group(['middleware' => 'cors'], function(){
 	Route::post('login', ['uses' => 'UserController@authenticate']);
+	Route::get('sources', ['uses' => 'ArticleController@index']);
 });
 
