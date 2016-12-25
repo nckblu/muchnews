@@ -5,13 +5,14 @@ import './CoreLayout.scss';
 import '../../styles/core.scss';
 import {
 	goToNews,
+	goToLogin,
 } from 'actions/routes';
 
 export class CoreLayout extends React.Component {
 
 	componentDidMount() {
 		if (!this.props.user.token && this.props.location.pathname.split("/")[1] !== "login") {
-			this.props.routes.push("/login");
+			this.props.goToLogin();
 		} else if (this.props.user.token && this.props.location.pathname.split("/")[1] === "login") {
 			this.props.goToNews();
 		}
@@ -49,6 +50,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     goToNews: () => dispatch(goToNews()),
+    goToLogin: () => dispatch(goToLogin()),
   };
 };
 
