@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Socialite;
 use JWTAuth;
 use App\Http\Services\ArticleService;
+use App\Exceptions\APIException;
+use App\ArticleSource;
 
 class ArticleController extends Controller
 {
@@ -14,7 +16,34 @@ class ArticleController extends Controller
 		$this->articleService = new ArticleService();
 
 		return response()->json([
-			'sources' => $this->articleService->getSources(),
+			'sources' => $this->articleService->fetchSources(),
 		]);
+	}
+
+	public function fetchArticles() {
+		$this->articleService = new ArticleService();
+		return response()->json([
+			'articles' => $this->articleService->fetchArticles(),
+		]);
+	}
+
+	public function fetchSources() {
+		$this->articleService = new ArticleService();
+		return response()->json([
+			'articles' => $this->articleService->fetchSources(),
+		]);
+	}
+
+	public function getArticles($sourceId) {
+		$articleSource = ArticleSource::find($sourceId);
+		if (!$articleSource) {
+			throw new APIException("SOURCE_NOT_FOUND");
+		}	
+
+		return response()->json([
+			'sourceId' => $sourceId,
+			'articles' => $articleSource->articles()->get(),
+		]);
+		
 	}
 }

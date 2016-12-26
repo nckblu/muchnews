@@ -24,5 +24,6 @@ use App\Http\Controllers\ArticleController;
 Route::group(['middleware' => 'cors'], function(){
 	Route::post('login', ['uses' => 'UserController@authenticate']);
 	Route::get('sources', ['uses' => 'ArticleController@index']);
+	Route::get('articles/{sourceId}', ['uses' => 'ArticleController@getArticles']);
 });
 

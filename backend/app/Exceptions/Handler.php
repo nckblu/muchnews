@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Exceptions\APIException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if($exception instanceof APIException) {
+            return response()->json([
+                'message' =>$exception->getMessage(),
+            ], $exception->getStatusCode());
+        }
+
         return parent::render($request, $exception);
     }
 
