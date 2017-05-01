@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
-import {persistStore, autoRehydrate} from 'redux-persist'
+import { persistStore, autoRehydrate } from 'redux-persist'
 import immutableTransform from 'redux-persist-transform-immutable'
 import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 
@@ -38,9 +38,9 @@ export default (initialState = {}) => {
   )
 
   persistStore(store, {
-    whitelist: ["user"],
-    transforms: [immutableTransform()],
-  });
+    whitelist: ['user'],
+    transforms: [immutableTransform()]
+  })
 
   store.asyncReducers = {}
 

@@ -20,6 +20,14 @@ class ArticleController extends Controller
 		]);
 	}
 
+	public function fetchSources(Request $request) {
+		$this->articleService = new ArticleService();
+
+		return response()->json([
+			'sources' => $this->articleService->fetchSources(),
+		]);
+	}
+
 	public function fetchArticles() {
 		$this->articleService = new ArticleService();
 		return response()->json([
@@ -27,10 +35,9 @@ class ArticleController extends Controller
 		]);
 	}
 
-	public function fetchSources() {
-		$this->articleService = new ArticleService();
+	public function getSources() {
 		return response()->json([
-			'articles' => $this->articleService->fetchSources(),
+			'sources' => ArticleSource::all(),
 		]);
 	}
 

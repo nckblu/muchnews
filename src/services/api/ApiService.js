@@ -1,29 +1,29 @@
-import axios from "axios";
-import config from "config";
+import axios from 'axios'
+import config from 'config'
 
 export default class ApiService {
 
-	constructor(props) {
-		this.apiKey = "&apiKey=" + config.apiKey;
-	}
+  constructor (props) {
+    this.apiKey = '&apiKey=' + config.apiKey
+  }
 
-	user() {
-		return {
-			authenticate(accessToken) {
-				console.log('instantit')
-				return axios.post(config.userApiUrl + 'login', {
-					accessToken,
-				});
-			}
-		}
-	}
+  user () {
+    return {
+      authenticate (accessToken) {
+        return axios.post(config.userApiUrl + 'login', {
+          accessToken
+        })
+      }
+    }
+  }
 
-	fetchPopular(source = "the-next-web", sort = "latest") {
-		return axios.get(config.apiUrl + 'articles?source=' + source + '&sortBy=' + sort + this.apiKey);
-	}
+  fetchPopular (source = '1') {
+    console.log('source is', source)
+    return axios.get(config.apiUrl + 'articles/' + source)
+  }
 
-	fetchArticleSources() {
-		return axios.get(config.apiUrl + 'sources?language=en' + this.apiKey);
-	}
+  fetchArticleSources () {
+    return axios.get(config.apiUrl + 'sources')
+  }
 
 }

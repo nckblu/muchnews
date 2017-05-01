@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import locationReducer from './location';
-import articlesReducer from 'reducers/articles';
-import articleSourcesReducer from 'reducers/articleSources';
-import userReducer from 'reducers/user';
+import { combineReducers } from 'redux'
+import locationReducer from './location'
+import articlesReducer from 'reducers/articles'
+import articleSourcesReducer from 'reducers/articleSources'
+import userReducer from 'reducers/user'
 import { routerReducer } from 'react-router-redux'
 
 export const makeRootReducer = (asyncReducers) => {
@@ -12,13 +12,13 @@ export const makeRootReducer = (asyncReducers) => {
     articleSources: articleSourcesReducer,
     user: userReducer,
     routing: routerReducer,
-    ...asyncReducers,
-  });
+    ...asyncReducers
+  })
 }
 
 export const injectReducer = (store, { key, reducer }) => {
-  store.asyncReducers[key] = reducer;
-  store.replaceReducer(makeRootReducer(store.asyncReducers));
+  store.asyncReducers[key] = reducer
+  store.replaceReducer(makeRootReducer(store.asyncReducers))
 }
 
-export default makeRootReducer;
+export default makeRootReducer
