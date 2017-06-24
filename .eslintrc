@@ -20,8 +20,13 @@
   },
   "rules": {
     "key-spacing"          : 0,
-    "jsx-quotes"           : [2, "prefer-single"],
+    "jsx-quotes"           : [2, "prefer-double"],
+    "quotes"               : [2, "double"],
     "max-len"              : [2, 120, 2],
-    "object-curly-spacing" : [2, "always"]
+    "object-curly-spacing" : [2, "always"],
+    "semi": [2, "always"],
+    "space-before-function-paren": ["error", "never"],
+    "comma-dangle": [2, "always-multiline"],
+    "no-class-assign": 0 // Redux form decorates by assignment
   }
 }

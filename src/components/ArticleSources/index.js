@@ -1,3 +1,3 @@
-import ArticleSources from './ArticleSources'
+import ArticleSources from "./ArticleSources";
 
-export default ArticleSources
+export default ArticleSources;

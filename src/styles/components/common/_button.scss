@@ -1,0 +1,50 @@
+.Button {
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  text-transform: lowercase;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+
+  &,
+  &:hover,
+  &:active,
+  &:visited,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &__inner {
+    transition: left 0.3s ease-in-out;
+    position: relative;
+    left: 0;
+
+    &--working {
+      transition: left 0.3s ease-in-out;
+      left: -20px;
+
+      &:before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: -48px;
+        top: -9px;
+      }
+    }
+  }
+
+  &--small {
+    border: 1px solid;
+    min-width: 70px;
+    padding: 14px 20px;
+  }
+
+  &--hollowWhite {
+    border: 1px solid $white;
+    background: transparent;
+    color: $white;
+  }
+}

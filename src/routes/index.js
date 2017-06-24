@@ -1,28 +1,25 @@
-// We only need to import the modules necessary for initial render
-import CoreLayout from '../layouts/CoreLayout/CoreLayout'
-import Home from './Home'
-import Login from './Login'
-
-/*  Note: Instead of using JSX, we recommend using react-router
-    PlainRoute objects to build route definitions.   */
+import CoreLayout from "layouts/CoreLayout";
+import LoginLayout from "layouts/LoginLayout";
+import Home from "./Home";
+import Login from "./Login";
 
 export const createRoutes = (store) => ([{
-  path        : '/news',
+  path        : "/news",
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
     {
-      path: '/news/:sourceId',
-      indexRoute: Home
-    }
-  ]
+      path: "/news/:sourceId",
+      indexRoute: Home,
+    },
+  ],
 },
-  {
-    path        : '/login',
-    component   : CoreLayout,
-    indexRoute  : Login
-  }
-])
+{
+  path        : "/login",
+  component   : LoginLayout,
+  indexRoute  : Login,
+},
+]);
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:
@@ -42,4 +39,4 @@ export const createRoutes = (store) => ([{
     when the route exists and matches.
 */
 
-export default createRoutes
+export default createRoutes;

@@ -1,26 +1,26 @@
-import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
-import { browserHistory } from 'react-router'
-import makeRootReducer from './reducers'
-import { updateLocation } from './location'
-import { persistStore, autoRehydrate } from 'redux-persist'
-import immutableTransform from 'redux-persist-transform-immutable'
-import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
+import { applyMiddleware, compose, createStore } from "redux";
+import thunk from "redux-thunk";
+import { browserHistory } from "react-router";
+import makeRootReducer from "./reducers";
+import { updateLocation } from "./location";
+import { persistStore, autoRehydrate } from "redux-persist";
+import immutableTransform from "redux-persist-transform-immutable";
+import { syncHistoryWithStore, routerMiddleware, push } from "react-router-redux";
 
 export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, routerMiddleware(browserHistory)]
+  const middleware = [thunk, routerMiddleware(browserHistory)];
 
   // ======================================================
   // Store Enhancers
   // ======================================================
-  const enhancers = []
+  const enhancers = [];
   if (__DEV__) {
-    const devToolsExtension = window.devToolsExtension
-    if (typeof devToolsExtension === 'function') {
-      enhancers.push(devToolsExtension())
+    const devToolsExtension = window.devToolsExtension;
+    if (typeof devToolsExtension === "function") {
+      enhancers.push(devToolsExtension());
     }
   }
 
@@ -35,26 +35,26 @@ export default (initialState = {}) => {
       applyMiddleware(...middleware),
       ...enhancers
     )
-  )
+  );
 
   persistStore(store, {
-    whitelist: ['user'],
-    transforms: [immutableTransform()]
-  })
+    whitelist: ["user"],
+    transforms: [immutableTransform()],
+  });
 
-  store.asyncReducers = {}
+  store.asyncReducers = {};
 
-  const history = syncHistoryWithStore(browserHistory, store)
+  const history = syncHistoryWithStore(browserHistory, store);
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
-  store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
+  store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
 
   if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const reducers = require('./reducers').default
-      store.replaceReducer(reducers(store.asyncReducers))
-    })
+    module.hot.accept("./reducers", () => {
+      const reducers = require("./reducers").default;
+      store.replaceReducer(reducers(store.asyncReducers));
+    });
   }
 
-  return store
-}
+  return store;
+};
