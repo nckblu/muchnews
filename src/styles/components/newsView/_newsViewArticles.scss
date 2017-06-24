@@ -1,0 +1,13 @@
+.NewsViewArticles {
+	width: 100%;
+	display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+
+  &__newsViewArticle {
+    margin: 10px 10px 10px 10px;
+    width: 20%;
+    flex-grow: 1;
+  }
+}
+

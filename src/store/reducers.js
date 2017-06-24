@@ -4,9 +4,11 @@ import articlesReducer from "reducers/articles";
 import articleSourcesReducer from "reducers/articleSources";
 import userReducer from "reducers/user";
 import { routerReducer } from "react-router-redux";
+import entitiesReducer from "./entities";
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
+    entities: entitiesReducer,
     location: locationReducer,
     articles: articlesReducer,
     articleSources: articleSourcesReducer,

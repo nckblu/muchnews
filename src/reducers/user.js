@@ -1,5 +1,4 @@
-import ApiService from "services/api/ApiService";
-import { fromJS, Map } from "immutable";
+import { fromJS } from "immutable";
 import {
   USER_AUTHENTICATE_REQUEST,
   USER_AUTHENTICATE_SUCCESS,

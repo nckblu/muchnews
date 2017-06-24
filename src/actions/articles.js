@@ -3,44 +3,41 @@ import ApiService from "services/api/ApiService";
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_POPULAR_REQUEST = "FETCH_POPULAR_REQUEST";
-export const FETCH_POPULAR = "FETCH_POPULAR";
-export const FETCH_POPULAR_SUCCESS = "FETCH_POPULAR_SUCCESS";
-export const FETCH_ERROR = "FETCH_ERROR";
+export const FETCH_ARTICLES_BY_SOURCE_REQUEST = "FETCH_ARTICLES_BY_SOURCE_REQUEST";
+export const FETCH_ARTICLES_BY_SOURCE_SUCCESS = "FETCH_ARTICLES_BY_SOURCE_SUCCESS";
+export const FETCH_ARTICLES_ERROR = "FETCH_ERROR";
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function fetchPopularRequest(state) {
-  return {
-    type: FETCH_POPULAR_REQUEST,
-  };
-}
-
-export function fetchPopular(sourceId) {
+export function fetchArticlesBySource(sourceId) {
   return (dispatch, getState) => {
-    dispatch(fetchPopularRequest());
+    dispatch({ type: FETCH_ARTICLES_BY_SOURCE_REQUEST });
     const apiService = new ApiService();
-    apiService.fetchPopular(sourceId)
+    return apiService.articles().fetchBySource(sourceId)
     .then(response => {
-    	return dispatch(fetchPopularSuccess(response.data.articles));
+      return dispatch(fetchArticlesBySourceSuccess(response.data.articles));
     })
     .catch(e => {
-    	return dispatch(fetchError());
+      return dispatch(fetchError(e));
     });
   };
 }
 
-export function fetchPopularSuccess(payload) {
-  console.warn("SUCCESS");
+export function fetchArticlesBySourceSuccess(payload) {
   return {
-    type : FETCH_POPULAR_SUCCESS,
+    type : FETCH_ARTICLES_BY_SOURCE_SUCCESS,
     payload,
   };
 }
 
-export function fetchError(data) {
+export function fetchError(e) {
+  console.log("error", e);
   return {
-    type: FETCH_ERROR,
+    type: FETCH_ARTICLES_ERROR,
   };
 }
+
+export default {
+  fetchArticlesBySource,
+};

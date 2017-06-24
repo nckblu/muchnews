@@ -6,12 +6,18 @@
    ========================================================================== */
 @import "components/common/button";
 
+@import "components/newsView/newsViewSidebar";
+@import "components/newsView/newsViewArticles";
+@import "components/newsView/newsViewArticle";
+
 /* 
    Layouts
    ========================================================================== */
 @import "layouts/loginLayout";
+@import "layouts/newsViewLayout";
 
 /* 
    Routes
    ========================================================================== */
 @import "routes/login";
+@import "routes/newsView";

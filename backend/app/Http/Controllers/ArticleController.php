@@ -49,7 +49,7 @@ class ArticleController extends Controller
 
 		return response()->json([
 			'sourceId' => $sourceId,
-			'articles' => $articleSource->articles()->get(),
+			'articles' => $articleSource->articles()->orderBy('created_at', 'DESC')->get(),
 		]);
 		
 	}

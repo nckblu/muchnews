@@ -1,16 +1,18 @@
 import CoreLayout from "layouts/CoreLayout";
 import LoginLayout from "layouts/LoginLayout";
+import NewsViewLayout from "layouts/NewsViewLayout";
 import Home from "./Home";
 import Login from "./Login";
+import NewsView from "./NewsView";
 
 export const createRoutes = (store) => ([{
   path        : "/news",
-  component   : CoreLayout,
-  indexRoute  : Home,
+  component   : NewsViewLayout,
+  indexRoute  : NewsView,
   childRoutes : [
     {
       path: "/news/:sourceId",
-      indexRoute: Home,
+      indexRoute: NewsView,
     },
   ],
 },
