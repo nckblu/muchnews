@@ -15,4 +15,10 @@
     color: $white;
     letter-spacing: -5px;
   }
+
+  &__button {
+    margin-top: 30px;
+  }
+
+  &__googleLogin { display: none; }
 }

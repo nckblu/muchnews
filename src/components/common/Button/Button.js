@@ -10,13 +10,14 @@ export const Button = ({
 }) => (
   <button
     className={cn("Button",
-                 `Button--${sizeClass}`,
-                 `Button--${colourClass}`,
-                 { [`Button--${colourClass}--${working}`]: working }
+                { "Button--working": working },
+                  `Button--${sizeClass}`,
+                  `Button--${colourClass}`,
+               { [`Button--${colourClass}--working`]: working }
     )}
     onClick={onClick}
   >
-    <div className="Button__inner">
+    <div className={cn("Button__inner", { "Button__inner--working": working })}>
       {text}
     </div>
   </button>

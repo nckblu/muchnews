@@ -27,6 +27,7 @@ if (config.env === "development") {
     noInfo      : config.compiler_quiet,
     lazy        : false,
     stats       : config.compiler_stats,
+    headers: { "Access-Control-Allow-Origin": "*" },
   }));
   app.use(require("webpack-hot-middleware")(compiler));
 
