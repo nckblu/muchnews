@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\ArticleSource;
 use App\Article;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class ArticleService {
 
@@ -63,7 +64,7 @@ class ArticleService {
 			}
 
 			foreach ($newArticles as $key => $article) {
-				if (!$articles->where('title', $article->title)->first()) {
+				if (DB::table('articles')->where('url', $article->url)->first() === null) {
 					$articleToAdd = new Article;
 					$articleToAdd->title = $article->title;
 					$articleToAdd->content = $article->description;

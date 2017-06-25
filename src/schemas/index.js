@@ -1,3 +1,9 @@
 import { schema } from "normalizr";
 
-export const articleSource = new schema.Entity("articleSource");
+export const article = new schema.Entity("articles");
+
+export const articleSource = new schema.Entity("articleSources", {
+  idAttribute: "sourceId",
+  articles: [ article ],
+});
+

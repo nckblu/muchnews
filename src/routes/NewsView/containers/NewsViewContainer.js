@@ -9,6 +9,7 @@ const mapStateToProps = state => {
   return {
     articleSources: articleSourcesSelectors.articleSourcesSelector(state),
     articles: articlesSelectors.articlesSelector(state),
+    articlesWorking: articlesSelectors.articlesWorkingSelector(state),
   };
 };
 
