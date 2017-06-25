@@ -17,6 +17,10 @@
 			background-position: center;
 		}
 
+    &__backgroundPlaceholder {
+      background-color: #ddd;
+    }
+
 		&__body {
 			color: $midGrey;
 			padding: 20px;
